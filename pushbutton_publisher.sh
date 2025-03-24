@@ -9,6 +9,9 @@ set -o nounset
 state="unknown"
 gpio=20
 was_pressed="false"
+broker="mqtt"
+hostname=$(hostname)
+topic="HA/$hostname/office/lighting_override"
 
 # Note: For this circuit the input reads '0' when the button is pressed
 
@@ -29,7 +32,10 @@ while (:); do
             state="off"
             ;;
         esac
-        echo "state $state"
+        # echo "state $state"
+        timestamp=$(date +%s)
+        message="{\"t\":$timestamp, \"override\":\"$state\", \"device\":\"pushbutton\"}"
+        /usr/bin/mosquitto_pub -h "$broker" -t "$topic" -m "$message" || true
 
     elif [ "$button" == "1" ]; then
         was_pressed="false"
