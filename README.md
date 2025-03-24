@@ -29,6 +29,26 @@ HA/zberry/office/lighting_override {"t":1742827537, "override":"on", "device":"p
 HA/zberry/office/lighting_override {"t":1742827537, "override":"off", "device":"pushbutton"}
 ```
 
+## 2025-03-24 Deploy
+
+User `crontab` entry in `zberry` (test host)
+
+```text
+@reboot /home/hbarta/bin/pushbutton_publisher.sh >/tmp/pushbutton_publisher.txt 2&>1
+```
+
+Entry in Home Assistant configuration (`configuration.yaml`):
+
+```text
+# HA/zberry/office/lighting_override {"t":1742833594, "override":"on", "device":"pushbutton"}
+# HA/zberry/office/lighting_override {"t":1742833595, "override":"off", "device":"pushbutton"}
+
+    - name: lab_light_override
+      state_topic: "HA/zberry/office/lighting_override"
+      unique_id: "lab_light_override"
+      value_template: "{{ value_json.override }}"
+```
+
 ## 2025-03-24 Errata
 
 Formatted and checked:
