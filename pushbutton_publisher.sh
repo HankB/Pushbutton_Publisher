@@ -30,7 +30,7 @@ while (:); do
             ;;
         esac
         echo "state $state"
-        
+
     elif [ "$button" == "1" ]; then
         was_pressed="false"
         # echo "press off"
