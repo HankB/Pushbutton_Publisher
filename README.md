@@ -28,3 +28,13 @@ The GPIO input reads '0' when pulled high (when the button is pressed.) Let's pu
 HA/zberry/office/lighting_override {"t":1742827537, "override":"on", "device":"pushbutton"}
 HA/zberry/office/lighting_override {"t":1742827537, "override":"off", "device":"pushbutton"}
 ```
+
+## 2025-03-24 Errata
+
+Formatted and checked:
+
+```text
+hbarta@charon:~/Programming/Pushbutton_Publisher $ shfmt -i 4 -w pushbutton_publisher.sh 
+hbarta@charon:~/Programming/Pushbutton_Publisher $ shellcheck ./pushbutton_publisher.sh 
+hbarta@charon:~/Programming/Pushbutton_Publisher $ 
+```
