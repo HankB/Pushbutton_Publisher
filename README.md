@@ -12,10 +12,12 @@ Home Assistant is the consumer of the messages.
 
 This should be relatively easily done using `gpiod` and a shell script. (See <https://github.com/HankB/GPIOD_Debian_Raspberry_Pi/tree/main/CLI> for more on that.)
 
-The circuit used is s 6.8K ohm resistor in series with a momentary pushbutton all connected bewtween 3V3 and ground. In other words:
+The circuit used is s 6.8K ohm resistor in series with a momentary pushbutton connected to ground. The GPIO is configured with pull-up and reads high when the button is not pressed. `gpiomon` reports '2' on a transition to low and '1' on a transition to high.
+
+ In other words:
 
 ```text
-     3V3
+   GPIO pin
       |
      6.8K
       |
@@ -24,7 +26,7 @@ The circuit used is s 6.8K ohm resistor in series with a momentary pushbutton al
      GND
 ```
 
-The GPIO input reads '0' when pulled high (when the button is pressed.) Let's put out a message like the following to the MQTT server.
+The GPIO input reads '2' when pulled low (when the button is pressed.) Let's put out a message like the following to the MQTT server.
 
 ```text
 HA/zberry/office/lighting_override {"t":1742827537, "override":"on", "device":"pushbutton"}
