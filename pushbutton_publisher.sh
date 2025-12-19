@@ -19,12 +19,12 @@ while (:); do
     button=$(/usr/bin/gpiomon -n 1 --idle-timeout 15m -F "%e" -p 10ms -c /dev/gpiochip0 "$gpio")
     # echo "$button"
     if [ -z "$button" ]; then
-        # echo timeout 
+        # echo timeout
         timestamp=$(date +%s)
         message="{\"t\":$timestamp, \"override\":\"$state\", \"device\":\"pushbutton\"}"
         /usr/bin/mosquitto_pub -h "$broker" -t "$topic" -m "$message" || true
     else
-        if [ "$button" == "2" ] ; then
+        if [ "$button" == "2" ]; then
             # echo "press detected"
             case "$state" in
             "unknown")
