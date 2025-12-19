@@ -1,5 +1,7 @@
 # Pushbutton_Publisher
 
+The `main` branch is now upgraded for GPIOD V2.2. If you need somethig that woirks with GPIOD V1.6 see the branch `GPIOD_V1.6`.
+
 Stupid little Raspberry Pi program to publish state that changes with each button press.
 
 The point is to provide an override for a motion sensitive sensor used to turn on lights after dark. Normally the lights are not durned on during daylight but some days and/or near dusk, it is desired to override this. The program will monitor a momentary pushbutton and report "on" or "off" to indicate state. When the state changes, that will be published as an MQTT message. In order to be responsive, the code will monitor the GPIO.
