@@ -53,6 +53,19 @@ Entry in Home Assistant configuration (`configuration.yaml`):
       value_template: "{{ value_json.override }}"
 ```
 
+## 2026-01-05 Systemd Deploy
+
+```text
+# do once to install the template unit file
+mkdir -p ~/.config/systemd/user/
+cp pushbutton_publisher.service ~/.config/systemd/user/
+
+mkdir -p /home/$USER/.config/pushbutton_publisher # create working dir
+sudo loginctl enable-linger $USER # do once
+systemctl --user daemon-reload
+systemctl enable --user --now pushbutton_publisher
+```
+
 ## 2025-03-24 Errata
 
 Formatted and checked:
